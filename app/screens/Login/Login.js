@@ -9,11 +9,24 @@ export default class Login extends Component {
 		this.state = {
 			redirect: false,
 			username: '',
-			password: ''
+			password: '',
+			error: false
 		}
 	}
 
 	login = () => {
+		let { username, password } = this.state;
+		if (!username || !password) {
+			// Display error message
+			// Set error state
+			return;
+		}
+
+		this.props.login({
+			username,
+			password
+		});
+
 		this.setState({
 			redirect: true
 		});
