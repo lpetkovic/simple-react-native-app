@@ -2,7 +2,11 @@ import * as C from './constants';
 
 const initialState = {
 	userLoggedIn: false,
-	username: ''
+	username: null,
+	errors: {
+		loginErr: null,
+		logoutErr: null
+	},
 };
 
 export function handleAuth(state = initialState, action) {
@@ -10,13 +14,40 @@ export function handleAuth(state = initialState, action) {
 		case C.LOGIN_SUCCESS:
 			return {
 				userLoggedIn: true,
-				username: action.username
+				username: action.username,
+				errors: {
+					...state.errors,
+					loginErr: null
+				}
 			}
-		case C.LOGOUT_SUCCESS:
+		case C.LOGIN_FAILURE: {
+			return {
+				...state,
+				errors: {
+					...state.errors,
+					loginErr: action.errorMsg
+				}
+			}
+		}
+		case C.LOGOUT_SUCCESS: {
 			return {
 				userLoggedIn: false,
-				username: ''
+				username: null,
+				errors: {
+					...state.errors,
+					logoutErr: null
+				}
 			}
+		}
+		case C.LOGOUT_FAILURE: {
+			return {
+				...state,
+				errors: {
+					...state.errors,
+					logoutErr: action.errorMsg
+				}
+			}
+		}
 		default:
 			return state;
 	}

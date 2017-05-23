@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NativeRouter, Route } from 'react-router-native';
-import { View } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 
 import { Provider, connect } from 'react-redux'
 import { createStore } from 'redux'
@@ -9,27 +9,43 @@ import { Locker } from './screens/index';
 import { Login } from './screens/index';
 
 import { store } from './store/store';
-import { checkLoginStatus, login } from './store/actionCreators';
+import { checkLoginStatus, login, logout } from './store/actionCreators';
 
 
 class _App extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			loading: true
+		}
 	}
 
-	componentDidMount() {
-		this.props.checkLoginStatus();
+	componentWillMount() {
+		this.props.checkLoginStatus(() => {
+			// Avoid flash of login component before login is done
+			this.setState({
+				loading: false
+			});
+		});
 	}
 
+	createScreen = () => {
+		if (this.state.loading) {
+			return <ActivityIndicator color="#ffffff" />
+		}
+
+		return this.showFirstPage();
+	}
+
+	showFirstPage = () => {
+		return this.props.userLoggedIn ? <Locker {...this.props} /> : <Login {...this.props} />;
+	}
 
 	render() {
 		return (
 			<NativeRouter>
 				<View style={{ paddingTop: 25, flex: 1, backgroundColor: 'crimson' }}>
-					{this.props.userLoggedIn ?
-						<Locker {...this.props} /> :
-						<Login {...this.props} />
-					}
+					{this.createScreen()}
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/locker" component={Locker} />
 				</View>
@@ -39,7 +55,6 @@ class _App extends Component {
 }
 
 const mapStateToProps = (state) => {
-	console.log(state);
 	return {
 		username: state.username,
 		userLoggedIn: state.userLoggedIn
@@ -48,11 +63,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		checkLoginStatus: () => {
-			dispatch(checkLoginStatus())
+		checkLoginStatus: (cb) => {
+			dispatch(checkLoginStatus(cb))
 		},
-		login: (data) => {
-			dispatch(login(data))
+		login: (data, cb) => {
+			dispatch(login(data, cb))
+		},
+		logout: (cb) => {
+			dispatch(logout(cb))
 		}
 	}
 }
