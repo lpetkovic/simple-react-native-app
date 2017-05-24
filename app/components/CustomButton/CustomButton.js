@@ -1,12 +1,12 @@
 import React from 'react';
-import { Text, TouchableHighlight, ActivityIndicator, View } from 'react-native';
-import styles from './styles';
+import { Text, TouchableOpacity, ActivityIndicator, View } from 'react-native';
+import style from './style';
 
 export default CustomButton = ({ ...props }) => (
-	<TouchableHighlight disabled={props.disabled} onPress={props.onPress}>
-		<View style={styles.buttonHolder}>
-			<Text style={styles.button}>{props.text}</Text>
+	<TouchableOpacity activeOpacity={0.5} disabled={props.disabled} onPress={props.onPress}>
+		<View style={style.buttonHolder} width={props.width || 200}>
+			<Text style={style.button}>{props.text}</Text>
 			{props.loading ? <ActivityIndicator color="red" /> : null}
 		</View>
-	</TouchableHighlight>
+	</TouchableOpacity >
 );

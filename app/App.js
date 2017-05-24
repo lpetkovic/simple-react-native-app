@@ -44,7 +44,7 @@ class _App extends Component {
 	render() {
 		return (
 			<NativeRouter>
-				<View style={{ paddingTop: 25, flex: 1, backgroundColor: 'crimson' }}>
+				<View style={{ flex: 1, backgroundColor: 'crimson' }}>
 					{this.createScreen()}
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/locker" component={Locker} />

@@ -39,6 +39,7 @@ export default class Locker extends Component {
 						onPress={this.logout}
 						text="Log out"
 						disabled={false}
+						width={80}
 						loading={this.state.loading}
 					/>
 				</View>

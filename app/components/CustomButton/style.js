@@ -1,14 +1,12 @@
 import { StyleSheet } from 'react-native';
 
-export default styles = StyleSheet.create({
+export default style = StyleSheet.create({
 	buttonHolder: {
 		flexDirection: 'row',
 		alignItems: 'center',
 		backgroundColor: '#ffffff',
-		marginTop: 25,
 		padding: 10,
-		justifyContent: 'space-between',
-		width: 200,
+		justifyContent: 'space-between'
 	},
 	button: {
 		flex: 1,

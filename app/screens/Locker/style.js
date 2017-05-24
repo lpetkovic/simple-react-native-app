@@ -2,15 +2,17 @@ import { StyleSheet } from 'react-native';
 
 export default style = StyleSheet.create({
 	welcomeHolder: {
-		flexDirection: 'column',
-		alignItems: 'center'
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		padding: 10,
+		marginTop: 20
 	},
 	welcome: {
-		marginTop: 20,
-		fontSize: 18,
+		fontSize: 14,
 		color: '#ffffff',
-		textAlign: 'center',
-		padding: 10,
+		textAlign: 'left',
+		flex: 1
 	},
 	listHolder: {
 		flex: 1
@@ -18,7 +20,7 @@ export default style = StyleSheet.create({
 	list: {
 		flex: 1,
 		backgroundColor: '#ffffff',
-		marginTop: 20
+		//marginTop: 20
 	},
 	listItem: {
 		fontSize: 16,
@@ -27,6 +29,9 @@ export default style = StyleSheet.create({
 		padding: 10,
 		borderBottomWidth: StyleSheet.hairlineWidth,
 		borderBottomColor: '#ffffff'
+	},
+	logout: {
+
 	},
 	separator: {
 		height: StyleSheet.hairlineWidth,

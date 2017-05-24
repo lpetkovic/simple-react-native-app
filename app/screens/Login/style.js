@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export default styles = StyleSheet.create({
+export default style = StyleSheet.create({
 	login: {
 		flex: 1,
 		justifyContent: 'center',

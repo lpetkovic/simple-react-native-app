@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, TextInput, Button, Text, ActivityIndicator } from 'react-native';
-import { CustomButton } from '../../components/index';
+import { View, Text } from 'react-native';
+import { CustomButton, Input, Password } from '../../components/index';
 import { Redirect } from 'react-router-native';
 import style from './style';
 
@@ -36,23 +36,16 @@ export default class Login extends Component {
 
 		return (
 			<View style={style.login}>
-				<TextInput
+				<Input
 					value={this.state.username}
-					style={style.input}
-					onChangeText={(val) => this.setState({ username: val })}
+					onChange={(val) => this.setState({ username: val })}
 					placeholder="Username"
-					placeholderTextColor="#ffffff"
-					autoCorrect={false}
-					keyboardType="default" />
-				<TextInput
+				/>
+				<Password
 					value={this.state.password}
-					style={style.input}
-					onChangeText={(val) => this.setState({ password: val })}
+					onChange={(val) => this.setState({ password: val })}
 					placeholder="Password"
-					placeholderTextColor="#ffffff"
-					autoCorrect={false}
-					keyboardType="default"
-					secureTextEntry={true} />
+				/>
 				<CustomButton
 					onPress={this.login}
 					disabled={!this.state.username || !this.state.password}
