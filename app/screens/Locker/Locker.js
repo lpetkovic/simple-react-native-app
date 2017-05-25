@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ActivityIndicator, FlatList } from 'react-native';
-import { CustomButton } from '../../components/index';
+import { CustomButton, Error } from '../../components/index';
 import style from './style';
-import list from './mockData'
 
 export default class Locker extends Component {
 
@@ -11,6 +10,14 @@ export default class Locker extends Component {
 		this.state = {
 			loading: false
 		}
+	}
+
+	async componentDidMount() {
+
+		if (this.props.policies.length === 0) {
+			await this.props.getExistingPolicies();
+		}
+		await this.props.getPolicies(this.props.policies, this.props.lastUpdated);
 	}
 
 	logout = () => {
@@ -23,6 +30,10 @@ export default class Locker extends Component {
 				loading: false
 			});
 		});
+	}
+
+	_keyExtractor = (item, index) => {
+		return index;
 	}
 
 	render() {
@@ -43,11 +54,16 @@ export default class Locker extends Component {
 						loading={this.state.loading}
 					/>
 				</View>
+
+				<Error error={this.props.errors.policiesError} />
+				<Error error={this.props.errors.logoutError} />
+
 				<View style={style.list}>
 					<FlatList
 						ItemSeparatorComponent={() => <View style={style.separator} />}
-						data={list}
+						data={this.props.policies}
 						renderItem={({ item }) => <Text style={style.listItem}>{item}</Text>}
+						keyExtractor={this._keyExtractor}
 					/>
 				</View>
 			</View>

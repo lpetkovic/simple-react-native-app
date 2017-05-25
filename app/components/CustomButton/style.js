@@ -10,7 +10,7 @@ export default style = StyleSheet.create({
 	},
 	button: {
 		flex: 1,
-		color: 'crimson',
+		color: 'darksalmon',
 		textAlign: 'center'
 	}
 })

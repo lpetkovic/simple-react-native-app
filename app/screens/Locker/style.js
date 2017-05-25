@@ -10,7 +10,7 @@ export default style = StyleSheet.create({
 	},
 	welcome: {
 		fontSize: 14,
-		color: '#ffffff',
+		color: 'darksalmon',
 		textAlign: 'left',
 		flex: 1
 	},
@@ -20,22 +20,23 @@ export default style = StyleSheet.create({
 	list: {
 		flex: 1,
 		backgroundColor: '#ffffff',
-		//marginTop: 20
+	},
+	error: {
+		padding: 10,
+		color: 'crimson',
+		textAlign: "center",
 	},
 	listItem: {
 		fontSize: 16,
-		color: 'crimson',
+		color: 'darksalmon',
 		textAlign: 'center',
 		padding: 10,
 		borderBottomWidth: StyleSheet.hairlineWidth,
 		borderBottomColor: '#ffffff'
 	},
-	logout: {
-
-	},
 	separator: {
 		height: StyleSheet.hairlineWidth,
-		backgroundColor: "crimson",
+		backgroundColor: "darksalmon",
 		flex: 1
 	}
 })

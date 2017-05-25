@@ -9,7 +9,7 @@ import { Locker } from './screens/index';
 import { Login } from './screens/index';
 
 import { store } from './store/store';
-import { checkLoginStatus, login, logout } from './store/actionCreators';
+import { checkLoginStatus, login, logout, getPolicies, getExistingPolicies } from './store/actionCreators';
 
 
 class _App extends Component {
@@ -31,7 +31,7 @@ class _App extends Component {
 
 	createScreen = () => {
 		if (this.state.loading) {
-			return <ActivityIndicator color="#ffffff" />
+			return <ActivityIndicator color="darksalmon" />
 		}
 
 		return this.showFirstPage();
@@ -44,7 +44,7 @@ class _App extends Component {
 	render() {
 		return (
 			<NativeRouter>
-				<View style={{ flex: 1, backgroundColor: 'crimson' }}>
+				<View style={{ flex: 1, backgroundColor: 'bisque' }}>
 					{this.createScreen()}
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/locker" component={Locker} />
@@ -56,8 +56,15 @@ class _App extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		username: state.username,
-		userLoggedIn: state.userLoggedIn
+		username: state.handleAuth.username,
+		userLoggedIn: state.handleAuth.userLoggedIn,
+		policies: state.handlePolicies.policies,
+		lastUpdated: state.handlePolicies.lastUpdated,
+		errors: {
+			policiesError: state.handlePolicies.error,
+			loginError: state.handleAuth.errors.loginErr,
+			logoutError: state.handleAuth.errors.logoutErr
+		}
 	}
 }
 
@@ -71,6 +78,12 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		logout: (cb) => {
 			dispatch(logout(cb))
+		},
+		getPolicies: async function (policies, lastUpdated) {
+			return await dispatch(getPolicies(policies, lastUpdated));
+		},
+		getExistingPolicies: async function () {
+			return await dispatch(getExistingPolicies())
 		}
 	}
 }

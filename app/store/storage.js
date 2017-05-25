@@ -13,4 +13,8 @@ export default class Storage {
 	static removeItem(key, cb) {
 		return AsyncStorage.removeItem(key, cb);
 	}
+
+	static mergeItem(key, value, cb) {
+		return AsyncStorage.mergeItem(key, value, cb);
+	}
 } 

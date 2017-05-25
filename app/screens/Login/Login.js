@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { CustomButton, Input, Password } from '../../components/index';
+import { CustomButton, Input, Password, Error } from '../../components/index';
 import { Redirect } from 'react-router-native';
 import style from './style';
 
@@ -46,6 +46,7 @@ export default class Login extends Component {
 					onChange={(val) => this.setState({ password: val })}
 					placeholder="Password"
 				/>
+				<Error error={this.props.errors.loginError} />
 				<CustomButton
 					onPress={this.login}
 					disabled={!this.state.username || !this.state.password}

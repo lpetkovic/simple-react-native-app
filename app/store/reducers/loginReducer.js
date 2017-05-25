@@ -1,4 +1,4 @@
-import * as C from './constants';
+import * as C from '../constants';
 
 const initialState = {
 	userLoggedIn: false,
@@ -9,7 +9,7 @@ const initialState = {
 	},
 };
 
-export function handleAuth(state = initialState, action) {
+export const handleAuth = (state = initialState, action) => {
 	switch (action.type) {
 		case C.LOGIN_SUCCESS:
 			return {

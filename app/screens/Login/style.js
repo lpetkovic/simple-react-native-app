@@ -8,13 +8,13 @@ export default style = StyleSheet.create({
 	},
 	input: {
 		height: 50,
-		color: 'white',
+		color: 'darksalmon',
 		fontSize: 14,
 		paddingLeft: 20
 	},
 	button: {
 		height: 40,
 		padding: 40,
-		backgroundColor: '#ffffff'
+		backgroundColor: 'darksalmon'
 	}
 })
