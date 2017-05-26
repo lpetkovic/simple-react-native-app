@@ -36,6 +36,12 @@ export default class Locker extends Component {
 		return index;
 	}
 
+	noPoliciesError() {
+		if (!this.props.policies || (this.props.policies && this.props.policies.length === 0)) {
+			return <Error error={"No policies locally stored and could not fetch policies from the server."} />
+		}
+	}
+
 	render() {
 		if (!this.props.userLoggedIn) {
 			return (
@@ -57,6 +63,7 @@ export default class Locker extends Component {
 
 				<Error error={this.props.errors.policiesError} />
 				<Error error={this.props.errors.logoutError} />
+				{this.noPoliciesError()}
 
 				<View style={style.list}>
 					<FlatList

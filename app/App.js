@@ -79,11 +79,11 @@ const mapDispatchToProps = (dispatch) => {
 		logout: (cb) => {
 			dispatch(logout(cb))
 		},
-		getPolicies: async function (policies, lastUpdated) {
-			return await dispatch(getPolicies(policies, lastUpdated));
+		getPolicies: (policies, lastUpdated) => {
+			return dispatch(getPolicies(policies, lastUpdated));
 		},
-		getExistingPolicies: async function () {
-			return await dispatch(getExistingPolicies())
+		getExistingPolicies: () => {
+			return dispatch(getExistingPolicies())
 		}
 	}
 }
